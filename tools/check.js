@@ -26,7 +26,10 @@ check(layout.includes('sizes="any"') && layout.includes('sizes="180x180"'), 'fav
 check(layout.includes('https://drayker.org/drayker-mark.js'), 'the shared mark engine is not loaded');
 check(layout.includes('data-drayker'), 'the hero mark container is missing');
 check(layout.includes("site.dk_accent | default: '#FF5500'"), 'the scope colour must fall back to the main accent');
-check(layout.includes("site.dk_sphere | default: 'brand'"), 'the sphere must be settable and fall back to the brand body');
+// DRAYKER-MARK.md §2.5: one official mark everywhere, only the globe changes colour.
+check(layout.includes('data-rings="mono"'), 'the hero must draw the official mark');
+check(!layout.includes('site.dk_body') && !layout.includes('site.dk_rings') && !layout.includes('site.dk_wedge') && !layout.includes('site.dk_sphere'),
+  'a project site must not vary the mark geometry — custom bodies belong to specific pages');
 check(layout.includes('prefers-reduced-motion: reduce') && layout.includes("'data-animate', 'false'"), 'reduced motion must stop the mark from following the cursor');
 check(layout.includes('.dk-hero-mark{display:none'), 'the mark must be hidden on narrow screens');
 
