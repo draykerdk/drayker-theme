@@ -142,20 +142,20 @@ main{display:block}
       {% if site.description %}<p>{{ site.description }}</p>{% endif %}
     </div>
     {% comment %}
-      The live mark, from the one engine that draws every Drayker symbol. Body, rings,
-      wedge and scope colour come from the repository's own _config.yml, so a site
-      changes its own presentation without the theme learning about it. The colour must
-      be one of the scope colours already in use (DRAYKER-MARK.md §7) — never a new one.
+      The official mark, drawn by the one engine that draws every Drayker symbol —
+      DRAYKER-MARK.md §2.5: rings mono, gaze locked, no idle animation. The geometry is
+      the same on every site on purpose. Only the globe takes the scope colour, and it
+      comes from the repository's own _config.yml. Custom bodies, rings and wedges are
+      for specific pages, never for a project's own mark.
       With JavaScript off the container stays empty and the layout simply closes up.
     {% endcomment %}
     <div class="dk-hero-mark" aria-hidden="true">
       <svg data-drayker
-           data-body="{{ site.dk_body | default: 'plain' }}"
-           data-rings="{{ site.dk_rings | default: 'hull' }}"
-           data-wedge="{{ site.dk_wedge | default: 'extract' }}"
+           data-rings="mono"
            data-accent="{{ site.dk_accent | default: '#FF5500' }}"
-           data-sphere="{{ site.dk_sphere | default: 'brand' }}"
-           data-ring-radius="120"></svg>
+           data-gaze="0,0.34"
+           data-animate="false"
+           data-fit="1.5"></svg>
     </div>
   </div>
 </div>
