@@ -26,6 +26,7 @@ check(layout.includes('sizes="any"') && layout.includes('sizes="180x180"'), 'fav
 check(layout.includes('https://drayker.org/drayker-mark.js'), 'the shared mark engine is not loaded');
 check(layout.includes('data-drayker'), 'the hero mark container is missing');
 check(layout.includes("site.dk_accent | default: '#FF5500'"), 'the scope colour must fall back to the main accent');
+check(layout.includes("site.dk_sphere | default: 'brand'"), 'the sphere must be settable and fall back to the brand body');
 check(layout.includes('prefers-reduced-motion: reduce') && layout.includes("'data-animate', 'false'"), 'reduced motion must stop the mark from following the cursor');
 check(layout.includes('.dk-hero-mark{display:none'), 'the mark must be hidden on narrow screens');
 
