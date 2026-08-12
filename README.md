@@ -13,7 +13,7 @@ plugins:
   - jekyll-optional-front-matter
 
 title: BSDK
-description: Base Structure DK — the base structure proposed for the Dk kernel.
+description: Base Structure DK. The base structure proposed for the Dk kernel.
 
 dk_kicker: Kernel component        # the small uppercase line above the title
 dk_subdomain: bsdk.drayker.org     # shown beside the mark and in the footer bar
@@ -43,4 +43,4 @@ The layout writes its own `<title>` and Open Graph tags rather than depending on
 
 ## Changing it
 
-`_layouts/default.html` is the whole theme — markup and tokens in one file, on purpose: thirteen sites inherit it and a single file is what makes a change reviewable. If a token changes here it must change in `SITE_PATTERN.md` of [`draykerdk/drayker.org`](https://github.com/draykerdk/drayker.org) as well; that document is the source of truth for the pattern.
+`_layouts/default.html` is the whole theme, markup and tokens in one file, on purpose. Thirteen sites inherit it and a single file is what makes a change reviewable. If a token changes here it must change in `SITE_PATTERN.md` of [`draykerdk/drayker.org`](https://github.com/draykerdk/drayker.org) as well. That document is the source of truth for the pattern.
