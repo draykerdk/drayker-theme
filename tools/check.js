@@ -22,10 +22,11 @@ check(layout.includes('https://dknowledge.drayker.org'), 'Dknowledge footer targ
 check(!layout.includes('dknowledger.drayker.org'), 'the retired Dknowledger hostname remains');
 check(!layout.includes('drayker.org/#org/'), 'the footer must use the clean routes, not hash routes');
 
-for (const asset of ['favicon.ico', 'drayker-favicon.svg', 'favicon-32.png', 'favicon-16.png', 'apple-touch-icon.png']) {
-  check(layout.includes('https://drayker.org/') && layout.includes(asset + '?v=20260811'), 'versioned favicon chain is missing ' + asset);
+for (const asset of ['drayker-icone.svg', 'escuro/drayker-icone.svg', 'icon-512.png', 'icon-512-escuro.png']) {
+  check(layout.includes('https://drayker.org/') && layout.includes(asset + '?v=20260813'), 'adaptive transparent favicon chain is missing ' + asset);
 }
-check(layout.includes('sizes="any"') && layout.includes('sizes="180x180"'), 'favicon size metadata is incomplete');
+check(layout.includes('prefers-color-scheme: light') && layout.includes('prefers-color-scheme: dark'), 'favicon theme variants are incomplete');
+check(layout.includes('sizes="any"') && layout.includes('sizes="512x512"'), 'favicon size metadata is incomplete');
 
 // The live mark: one engine for every Drayker symbol, configured per repository and
 // degrading to nothing at all rather than to a broken box.
