@@ -11,24 +11,72 @@
 <link rel="icon" href="https://drayker.org/assets/logo/kit/favicon-32.png?v=20260811" type="image/png" sizes="32x32">
 <link rel="icon" href="https://drayker.org/assets/logo/kit/favicon-16.png?v=20260811" type="image/png" sizes="16x16">
 <link rel="apple-touch-icon" href="https://drayker.org/assets/logo/kit/apple-touch-icon.png?v=20260811" sizes="180x180">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="AI-readable site summary">
 {% comment %}
   Meta written out by hand rather than through {% seo %}: the theme has to build in
   thirteen repositories whose plugin lists we do not want to depend on. A repo that does
   enable jekyll-seo-tag will simply have this as its baseline.
 {% endcomment %}
 <title>{% if page.title and page.title != site.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title | default: 'Drayker' }}{% endif %}</title>
-{% if site.description %}<meta name="description" content="{{ site.description | strip_html | truncate: 300 }}">{% endif %}
+{% if site.description %}<meta name="description" content="{{ site.description | strip_html | truncate: 160 }}">{% endif %}
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{ page.title | default: site.title }}">
-{% if site.description %}<meta property="og:description" content="{{ site.description | strip_html | truncate: 300 }}">{% endif %}
+{% if site.description %}<meta property="og:description" content="{{ site.description | strip_html | truncate: 160 }}">{% endif %}
 <meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:image" content="https://drayker.org/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Drayker mark: an orange sphere crossed by two rings.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | default: site.title }}">
+{% if site.description %}<meta name="twitter:description" content="{{ site.description | strip_html | truncate: 160 }}">{% endif %}
 <meta name="twitter:image" content="https://drayker.org/og.png">
+<meta property="og:site_name" content="{{ site.title | default: 'Drayker' }}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://drayker.com/#organization",
+      "name": "Drayker",
+      "url": "https://drayker.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://drayker.org/assets/logo/kit/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://github.com/draykerdk",
+        "https://twitter.com/Draykerdk",
+        "https://medium.com/drayker"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": {{ site.title | default: 'Drayker' | jsonify }},
+      "alternateName": {{ site.dk_subdomain | default: site.title | jsonify }},
+      "description": {{ site.description | strip_html | jsonify }},
+      "publisher": { "@id": "https://drayker.com/#organization" },
+      "inLanguage": {{ site.lang | default: 'en' | jsonify }}
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{ page.url | absolute_url }}#webpage",
+      "url": "{{ page.url | absolute_url }}",
+      "name": {{ page.title | default: site.title | jsonify }},
+      "description": {{ site.description | strip_html | jsonify }},
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "about": { "@id": "https://drayker.com/#organization" },
+      "inLanguage": {{ site.lang | default: 'en' | jsonify }}
+    }
+  ]
+}
+</script>
 {% comment %}
   The documentation sites share one card image, hosted on the portal. A stale translation
   should not be indexed next to the English page it no longer matches, so those are marked
