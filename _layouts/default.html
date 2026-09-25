@@ -77,9 +77,9 @@
 }
 </script>
 {% comment %}
-  The documentation sites share one card image, hosted on the portal. A stale translation
-  should not be indexed next to the English page it no longer matches, so those are marked
-  noindex until they are brought up to date — there are open functions for that.
+  The documentation sites share one card image, hosted on the portal. English is the canonical
+  language and translations are no longer maintained by hand; any remaining translated file is
+  marked noindex so it is not indexed next to the English page it no longer matches.
 {% endcomment %}
 {% if page.path contains 'README.PT' or page.path contains 'README.ES' or page.path contains 'CONTRIBUTING.PT' %}
 <meta name="robots" content="noindex, follow">
