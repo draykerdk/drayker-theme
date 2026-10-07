@@ -44,3 +44,5 @@ The layout writes its own `<title>` and Open Graph tags rather than depending on
 ## Changing it
 
 `_layouts/default.html` is the whole theme, markup and tokens in one file, on purpose. Thirteen sites inherit it and a single file is what makes a change reviewable. If a token changes here it must change in `SITE_PATTERN.md` of [`draykerdk/drayker.org`](https://github.com/draykerdk/drayker.org) as well. That document is the source of truth for the pattern.
+
+Code under MIT (see `LICENSE`), content under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
