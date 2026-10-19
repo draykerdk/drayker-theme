@@ -42,6 +42,13 @@ check(!layout.includes('site.dk_body') && !layout.includes('site.dk_rings') && !
 check(layout.includes('prefers-reduced-motion: reduce') && layout.includes("'data-animate', 'false'"), 'reduced motion must stop the mark from following the cursor');
 check(layout.includes('.dk-hero-mark{display:none'), 'the mark must be hidden on narrow screens');
 
+// Diagrams: Mermaid only where a page has a mermaid block, at a pinned version, in strict mode,
+// and the block keeps its text if the library never arrives.
+check(/mermaid@\d+\.\d+\.\d+\//.test(layout), 'Mermaid must be pinned to an exact version');
+check(layout.includes("securityLevel: 'strict'"), 'Mermaid must run in strict security mode');
+check(layout.includes('if (blocks.length)') && layout.includes('await import('), 'Mermaid must load only on pages that have a diagram');
+check(layout.includes('el.textContent = code.textContent'), 'a diagram must keep its source text as the fallback');
+
 if (failures.length) {
   failures.forEach((failure) => console.error('FAIL: ' + failure));
   process.exit(1);

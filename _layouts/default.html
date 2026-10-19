@@ -140,6 +140,9 @@ main{display:block}
 .dk-doc code{font-family:'JetBrains Mono',monospace;font-size:0.86em;background:#111115;border:1px solid #1E1E28;padding:1px 5px;color:#D2D0D8}
 .dk-doc pre{background:#0C0C0F;border:1px solid #18181E;padding:18px 20px;overflow-x:auto;margin:0 0 1.4em;line-height:1.55}
 .dk-doc pre code{background:none;border:0;padding:0;font-size:13.5px;color:#B8B6C2}
+.dk-doc .dk-diagram{background:#0C0C0F;border:1px solid #18181E;padding:18px 20px;overflow-x:auto;margin:0 0 1.4em;text-align:center;white-space:pre;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#B8B6C2}
+.dk-doc .dk-diagram[data-processed]{white-space:normal}
+.dk-doc .dk-diagram svg{max-width:100%;height:auto}
 .dk-doc table{border-collapse:collapse;width:100%;margin:0 0 1.4em;font-size:14.5px;display:block;overflow-x:auto}
 .dk-doc th,.dk-doc td{border:1px solid #18181E;padding:10px 14px;text-align:left;vertical-align:top}
 .dk-doc th{background:#0C0C0F;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8585A0;font-weight:500}
@@ -252,6 +255,47 @@ main{display:block}
       document.querySelectorAll('[data-drayker]').forEach(function (el) { el.setAttribute('data-animate', 'false'); });
     } catch (e) {}
   });
+</script>
+<script type="module">
+  // A ```mermaid block in a README is drawn as a diagram. The library is loaded only on a
+  // page that has such a block, at a fixed version, with scripts and links inside diagrams
+  // disabled. Without it the block stays readable as text, in the same box as code.
+  const blocks = document.querySelectorAll('.dk-doc code.language-mermaid, .dk-doc div.language-mermaid code');
+  if (blocks.length) {
+    const nodes = [];
+    blocks.forEach((code) => {
+      const host = code.closest('div.language-mermaid') || code.closest('pre') || code;
+      const el = document.createElement('div');
+      el.className = 'mermaid dk-diagram';
+      el.textContent = code.textContent;
+      host.replaceWith(el);
+      nodes.push(el);
+    });
+    try {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: 'base',
+        themeVariables: {
+          darkMode: true,
+          background: '#0C0C0F',
+          fontFamily: 'Archivo, sans-serif',
+          primaryColor: '#111115',
+          primaryTextColor: '#EDECF0',
+          primaryBorderColor: '#FF5500',
+          secondaryColor: '#0C0C0F',
+          tertiaryColor: '#0C0C0F',
+          lineColor: '#8585A0',
+          textColor: '#EDECF0',
+          clusterBkg: '#0C0C0F',
+          clusterBorder: '#18181E',
+          edgeLabelBackground: '#08080A'
+        }
+      });
+      await mermaid.run({ nodes });
+    } catch (e) {}
+  }
 </script>
 </body>
 </html>
