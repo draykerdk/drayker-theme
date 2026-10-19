@@ -37,7 +37,8 @@ If the site is served from `docs/`, the `_config.yml` goes in `docs/` too.
 - The complete official favicon chain on every generated Markdown page, served from the canonical portal assets.
 - Markdown styling for headings, tables, code, blockquotes and lists, with tables scrolling inside their own container instead of pushing the page sideways.
 - A shared footer pointing at the protocol, the knowledge base, the open functions and the volunteer flow.
-- Visible focus states, `prefers-reduced-motion` respected, no JavaScript.
+- Visible focus states and `prefers-reduced-motion` respected.
+- Little JavaScript: the shared mark engine (`https://drayker.org/drayker-mark.js`) and a short inline script that stops the mark from following the cursor under reduced motion. The page reads fully without either; the mark simply does not appear.
 
 The layout writes its own `<title>` and Open Graph tags rather than depending on `jekyll-seo-tag`, so it builds in a repository whose plugin list you have not touched.
 
