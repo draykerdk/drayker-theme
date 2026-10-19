@@ -39,6 +39,7 @@ If the site is served from `docs/`, the `_config.yml` goes in `docs/` too.
 - A shared footer pointing at the protocol, the knowledge base, the open functions and the volunteer flow.
 - Visible focus states and `prefers-reduced-motion` respected.
 - Little JavaScript: the shared mark engine (`https://drayker.org/drayker-mark.js`) and a short inline script that stops the mark from following the cursor under reduced motion. The page reads fully without either; the mark simply does not appear.
+- Diagrams: a fenced ```` ```mermaid ```` block in a README is drawn as a diagram in the theme's colours. The library (Mermaid 11.4.1, from jsDelivr) is loaded only on pages that have such a block, with `securityLevel: 'strict'`. Without it the block stays readable as text.
 
 The layout writes its own `<title>` and Open Graph tags rather than depending on `jekyll-seo-tag`, so it builds in a repository whose plugin list you have not touched.
 
