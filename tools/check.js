@@ -21,8 +21,9 @@ check(layout.includes('meta name="twitter:title"') && layout.includes('meta name
 check(layout.includes('https://dknowledge.drayker.org'), 'Dknowledge footer target is wrong');
 check(!layout.includes('dknowledger.drayker.org'), 'the retired Dknowledger hostname remains');
 check(!layout.includes('drayker.org/#org/'), 'the footer must use the clean routes, not hash routes');
-// The footer states what Drayker is: no owner, no shareholders, no profit distribution (not "non-profit").
-check(layout.includes('NO OWNER · NO SHAREHOLDERS · NO PROFIT DISTRIBUTION') && !/non-profit/i.test(layout), 'the footer must describe ownership, not a non-profit form');
+// The footer states what Drayker is: it belongs to its members, with no shareholders and
+// no profit distribution (not "non-profit").
+check(layout.includes('BELONGS TO ITS MEMBERS · NO SHAREHOLDERS · NO PROFIT DISTRIBUTION') && !/non-profit/i.test(layout), 'the footer must say that Drayker belongs to its members, not a non-profit form');
 
 for (const asset of ['drayker-icon.svg', 'dark/drayker-icon.svg', 'icon-512.png', 'icon-512-dark.png']) {
   check(layout.includes('https://drayker.org/') && layout.includes(asset + '?v=20260813'), 'adaptive transparent favicon chain is missing ' + asset);

@@ -13,7 +13,7 @@ plugins:
   - jekyll-optional-front-matter
 
 title: BSDK
-description: Base Structure DK. The base structure proposed for the Dk kernel.
+description: Base Structure Distributed Kernel. The base structure proposed for the Dk kernel.
 
 dk_kicker: Kernel component        # the small uppercase line above the title
 dk_subdomain: bsdk.drayker.org     # shown beside the mark and in the footer bar
